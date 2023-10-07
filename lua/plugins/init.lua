@@ -17,7 +17,29 @@ return {
             icon = "",
             color = "#f1502f",
             name = "Gitignore"
-          }
+          },
+        },
+        override_by_extension = {
+          ["tsx"] = {
+            icon = "",
+            color = "#519aba",
+            name = "Tsx",
+          },
+          ["svg"] = {
+            icon = "󰜡",
+            color = "#FFB13B",
+            name = "Svg",
+          },
+          ["json"] = {
+            icon = "",
+            color = "#cbcb41",
+            name = "Json",
+          },
+          ["ts"] = {
+            icon = "",
+            color = "#519aba",
+            name = "Ts",
+          },
         }
       })
     end,

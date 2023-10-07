@@ -87,12 +87,9 @@ function M.setup(_, opts)
     require("lspconfig")[server].setup(server_opts)
   end
 
-  -- Add bun for Node.js-based servers
-  local lspconfig_util = require("lspconfig.util")
-  local add_bun_prefix = require("plugins.lsp.bun").add_bun_prefix
-  lspconfig_util.on_setup = lspconfig_util.add_hook_before(lspconfig_util.on_setup, add_bun_prefix)
 
   -- -- Add magento 2 support
+  local lspconfig_util = require("lspconfig.util")
   local server_config = require("lspconfig.configs")
 
   server_config.magento = {
