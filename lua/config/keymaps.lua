@@ -67,7 +67,7 @@ map("n", "<leader>cap", "gg<S-v><S-g>p")
 -- map("n", "<leader>e", ":NeoTreeFocusToggle<CR>")
 
 -- search resume
-map("n", "<leader>sr", "<cmd>lua require('fzf-lua').resume()<CR>")
+-- map("n", "<leader>sr", ":Telescope resume<CR>")
 
 -- git signs
 -- map("n", "<leader>gdt", ":Gitsigns diffthis<CR>") -- git show differents

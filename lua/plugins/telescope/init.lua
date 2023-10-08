@@ -27,145 +27,49 @@ return {
     -- stylua: ignore
     keys = {
       {
-        "<leader><space>",
-        require("utils").find_files,
-        desc =
-        "Find Files"
+        "<leader>sr",
+        "<cmd>Telescope resume<cr>",
+        desc = "Search resume",
       },
       {
-        "<leader>ff",
-        require("utils").telescope("files"),
-        desc =
-        "Find Files (Root Dir)"
-      },
-      {
-        "<leader>fF",
-        require("utils").telescope("files", { cwd = false }),
-        desc =
-        "Find Files (Cwd)"
-      },
-      {
-        "<leader>gf",
-        require("plugins.telescope.pickers").git_diff_picker,
-        desc =
-        "Diff Files"
-      },
-      {
-        "<leader>fo",
-        "<cmd>Telescope frecency theme=dropdown previewer=false<cr>",
-        desc =
-        "Recent"
-      },
-      {
-        "<leader>fb",
-        "<cmd>Telescope buffers<cr>",
-        desc =
-        "Buffers"
-      },
-      {
-        "<leader>fm",
-        "<cmd>Telescope marks<cr>",
-        desc =
-        "Marks"
-      },
-      {
-        "<leader>fc",
-        "<cmd>cd %:p:h<cr>",
-        desc =
-        "Change WorkDir"
-      },
-      {
-        "<leader>fg",
+        "<leader>st",
         function() require("telescope").extensions.live_grep_args.live_grep_args() end,
-        desc =
-        "Live Grep",
+        desc = "Search text",
       },
       {
-        "<leader>fr",
-        "<cmd>Telescope file_browser<cr>",
-        desc =
-        "Browser"
+        "<leader>sf",
+        require("utils").telescope("files"),
+        desc = "Search for files (Root Dir)"
       },
       {
-        "<leader>fz",
-        "<cmd>Telescope zoxide list<cr>",
-        desc =
-        "Recent Folders"
+        "<leader>sb",
+        "<cmd>Telescope buffers<cr>",
+        desc = "Search in buffers"
       },
       {
-        "<leader>gc",
-        "<cmd>Telescope conventional_commits<cr>",
-        desc =
-        "Conventional Commits"
-      },
-      {
-        "<leader>zs",
-        "<cmd>Telescope lazy<cr>",
-        desc =
-        "Search Plugins"
-      },
-      {
-        "<leader>ps",
-        "<cmd>Telescope repo list<cr>",
-        desc =
-        "Search"
-      },
-      {
-        "<leader>hs",
-        "<cmd>Telescope help_tags<cr>",
-        desc =
-        "Search"
-      },
-      {
-        "<leader>pp",
-        function() require("telescope").extensions.project.project { display_type = "minimal" } end,
-        desc =
-        "List",
-      },
-      {
-        "<leader>sw",
-        require("utils").telescope("live_grep"),
-        desc =
-        "Grep (Root Dir)"
-      },
-      {
-        "<leader>sW",
-        require("utils").telescope("live_grep", { cwd = false }),
-        desc =
-        "Grep (Cwd)"
+        "<leader>sc",
+        function() require("telescope.builtin").current_buffer_fuzzy_find() end,
+        desc = "Search in current buffer",
       },
       {
         "<leader>ss",
         "<cmd>Telescope luasnip<cr>",
-        desc =
-        "Snippets"
+        desc = "Search snippets"
       },
       {
-        "<leader>sb",
-        function() require("telescope.builtin").current_buffer_fuzzy_find() end,
-        desc =
-        "Buffer",
+        "<leader>sd",
+        require("plugins.telescope.pickers").git_diff_picker,
+        desc = "Git diff files"
       },
       {
-        "<leader>vo",
-        "<cmd>Telescope aerial<cr>",
-        desc =
-        "Code Outline"
+        "<leader>sgc",
+        "<cmd>Telescope conventional_commits<cr>",
+        desc = "Git conventional commits"
       },
       {
         "<leader>zc",
         function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
-        desc =
-        "Colorscheme",
-      },
-      {
-        "<leader>su",
-        function()
-          require("telescope.builtin").live_grep({
-            search_dirs = { vim.fs.dirname(vim.fn.expand("%")) } })
-        end,
-        desc =
-        "Grep (Current File Path)"
+        desc = "Change colorscheme",
       },
     },
     config = function(_, _)
