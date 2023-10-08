@@ -133,3 +133,19 @@ if vim.fn.has("wsl") == 1 then
     cache_enabled = 0,
   }
 end
+
+local customSettings = function()
+  local status, custom_config = pcall(require, 'custom')
+
+  local colorscheme = "catppuccin-mocha"
+
+  if status then
+    if custom_config.colorscheme and custom_config.colorscheme ~= '' then
+      colorscheme = custom_config.colorscheme
+    end
+  end
+
+  vim.g.custom_settings_colorscheme = colorscheme
+end
+
+customSettings()
