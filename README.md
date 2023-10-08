@@ -5,13 +5,17 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 ### Customization Options
 
-To personalize your Neovim configuration, you can create a `custom.json` file in the root directory of your Neovim configuration.
+To personalize your Neovim configuration, you can create a `custom.lua` file in the root directory of your Neovim configuration.
 
 #### Setting Your Preferred Colorscheme
 
-You can easily set your preferred colorscheme using the `colorscheme` option in `custom.json`. Here's an example of how to do it:
+You can easily set your preferred colorscheme using the `colorscheme` option in `custom.lua`. Here's an example of how to do it:
 
-```json
-{
-    "colorscheme": "dracula"
+```lua
+return {
+  colorscheme = "dracula",
+  --            "dracula"
+  --            "github_dark_high_contrast"
+  --            "catppuccin-mocha"
 }
+```
