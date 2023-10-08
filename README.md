@@ -3,7 +3,11 @@
 Custom configuration based on [LazyVim](https://github.com/LazyVim/LazyVim).
 Refer to the [documentation](https://lazyvim.github.io/installation) to get more information.
 
-### Customization Options
+## Keymaps
+
+![Keymaps](keymaps.png)
+
+## Customization Options
 
 To personalize your Neovim configuration, you can create a `custom.lua` file in the root directory of your Neovim configuration.
 
