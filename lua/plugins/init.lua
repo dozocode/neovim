@@ -8,37 +8,57 @@ return {
   -- This plugin provides the same icons as well as colors for each icon.
   {
     "nvim-tree/nvim-web-devicons",
-    dependencies = { "DaikyXendo/nvim-material-icon" },
+    -- dependencies = { "DaikyXendo/nvim-material-icon" },
     config = function()
       require("nvim-web-devicons").setup({
-        override = require("nvim-material-icon").get_icons(),
         override_by_filename = {
           [".gitignore"] = {
-            icon = "",
-            color = "#f1502f",
-            name = "Gitignore"
+            icon = "󰊢",
+            color = "#e24329",
+            cterm_color = "166",
+            name = "GitIgnore",
+          },
+          ['package.json'] = {
+            icon = "󰎙",
+            color = "#8bc34a",
+            cterm_color = "113",
+            name = "PackageJson"
+          },
+          ["package-lock.json"] = {
+            icon = "󰎙",
+            color = "#7a0d21",
+            cterm_color = "1",
+            name = "PackageLockJson"
           },
         },
         override_by_extension = {
           ["tsx"] = {
-            icon = "",
+            icon = "󰜈",
             color = "#519aba",
+            cterm_color = "67",
             name = "Tsx",
           },
           ["svg"] = {
             icon = "󰜡",
             color = "#FFB13B",
+            cterm_color = "215",
             name = "Svg",
           },
           ["json"] = {
-            icon = "",
+            icon = "󰘦",
             color = "#cbcb41",
             name = "Json",
           },
           ["ts"] = {
-            icon = "",
+            icon = "",
             color = "#519aba",
             name = "Ts",
+          },
+          ["py"] = {
+            icon = "󰌠",
+            color = "#ffbc03",
+            cterm_color = "214",
+            name = "Py",
           },
         }
       })

@@ -27,6 +27,8 @@ local function lsp_init()
       -- virtual_text = { spacing = 4, prefix = "●" },
       virtual_text = {
         severity = {
+          -- vim.diagnostic.severity.ERROR,
+          -- vim.diagnostic.severity.WARNING,
           min = vim.diagnostic.severity.ERROR,
         },
       },

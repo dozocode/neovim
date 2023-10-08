@@ -5,8 +5,8 @@ return {
     config = function()
       require("styler").setup({
         themes = {
-          markdown = { colorscheme = "catppuccin-mocha" },
-          help = { colorscheme = "catppuccin-mocha" },
+          markdown = { colorscheme = custom_colorscheme },
+          help = { colorscheme = custom_colorscheme },
         },
       })
     end,
@@ -40,8 +40,15 @@ return {
     end,
   },
   {
+    "Mofiqul/dracula.nvim",
+    lazy = false,
+    config = function()
+      require("dracula").setup()
+    end,
+  },
+  {
     "catppuccin/nvim",
-    lazy = true,
+    lazy = false,
     name = "catppuccin",
     opts = {
       integrations = {
@@ -77,8 +84,31 @@ return {
   },
   {
     "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin-mocha",
-    },
+    config = function()
+      local custom_json_path = vim.fn.expand('~/.config/nvim/custom.json')
+      local custom_config = nil
+      local custom_colorscheme = "catppuccin-mocha"
+
+      -- Check if the custom.json file exists
+      if vim.fn.filereadable(custom_json_path) == 1 then
+        -- Load file data
+        local file = io.open(custom_json_path, "r")
+        local content = file:read "*a"
+        file:close()
+
+        -- Parse the JSON content
+        local custom_data = vim.json.decode(content)
+
+        if custom_data then
+          custom_config = custom_data
+        end
+
+        if custom_config and custom_config["colorscheme"] and custom_config["colorscheme"] ~= "" then
+          custom_colorscheme = custom_config["colorscheme"]
+        end
+      end
+
+      vim.cmd.colorscheme(custom_colorscheme)
+    end,
   },
 }
