@@ -32,6 +32,12 @@ return {
         desc = "Search resume",
       },
       {
+        "<leader>se",
+        "<cmd>Telescope file_browser<cr>",
+        desc =
+        "File explorer"
+      },
+      {
         "<leader>st",
         function() require("telescope").extensions.live_grep_args.live_grep_args() end,
         desc = "Search text",
