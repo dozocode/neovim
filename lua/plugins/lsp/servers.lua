@@ -94,9 +94,11 @@ function M.setup(_, opts)
   local lspconfig_util = require("lspconfig.util")
   local server_config = require("lspconfig.configs")
 
+  print()
+
   server_config.magento = {
     default_config = {
-      cmd = { "/home/adhome/lsp/magento2", "--stdio" },
+      cmd = { vim.env.HOME .. "/lsp/magento2", "--stdio" },
       name = "magento",
       filetypes = {
         "xml",
