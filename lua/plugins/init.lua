@@ -2,151 +2,13 @@ return {
   -- Simplifies creating powerful Neovim plugins with developer-friendly tools and utilities.
   { "nvim-lua/plenary.nvim" },
 
-  -- UI Component Library for Neovim.
-  { "MunifTanjim/nui.nvim" },
-
-  -- This plugin provides the same icons as well as colors for each icon.
+  -- requires python3-venv then :CHADdeps
   {
-    "nvim-tree/nvim-web-devicons",
-    -- dependencies = { "DaikyXendo/nvim-material-icon" },
-    config = function()
-      require("nvim-web-devicons").setup({
-        override_by_filename = {
-          [".gitignore"] = {
-            icon = "󰊢",
-            color = "#e24329",
-            cterm_color = "166",
-            name = "GitIgnore",
-          },
-          ['package.json'] = {
-            icon = "󰎙",
-            color = "#8bc34a",
-            cterm_color = "113",
-            name = "PackageJson"
-          },
-          ["package-lock.json"] = {
-            icon = "󰎙",
-            color = "#7a0d21",
-            cterm_color = "1",
-            name = "PackageLockJson"
-          },
-        },
-        override_by_extension = {
-          ["tsx"] = {
-            icon = "󰜈",
-            color = "#519aba",
-            cterm_color = "67",
-            name = "Tsx",
-          },
-          ["svg"] = {
-            icon = "󰜡",
-            color = "#FFB13B",
-            cterm_color = "215",
-            name = "Svg",
-          },
-          ["json"] = {
-            icon = "󰘦",
-            color = "#cbcb41",
-            name = "Json",
-          },
-          ["ts"] = {
-            icon = "",
-            color = "#519aba",
-            name = "Ts",
-          },
-          ["py"] = {
-            icon = "󰌠",
-            color = "#ffbc03",
-            cterm_color = "214",
-            name = "Py",
-          },
-        }
-      })
-    end,
-  },
-
-  -- Icon set for neovim plugins and settings.
-  { "yamatsum/nvim-nonicons", config = true,        enabled = false },
-
-  -- Plugin for Vim that enhances the dot command's functionality.
-  { "tpope/vim-repeat",       event = "VeryLazy" },
-
-  -- Plugin that peeks lines of the buffer in non-obtrusive way.
-  { "nacro90/numb.nvim",      event = "BufReadPre", config = true },
-
-  -- This plugin adds indentation guides to Neovim.
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      indent = {
-        char = "│",
-        tab_char = "│",
-      },
-      scope = { enabled = false },
-      exclude = {
-        filetypes = {
-          "help",
-          "alpha",
-          "dashboard",
-          "neo-tree",
-          "Trouble",
-          "lazy",
-          "mason",
-          "notify",
-          "toggleterm",
-          "lazyterm",
-        },
-      },
-    },
-    main = "ibl",
-  },
-
-  -- Enhances Neovim's UI with telescope integration.
-  {
-    "stevearc/dressing.nvim",
+    "ms-jpq/chadtree",
     event = "VeryLazy",
-    opts = {
-      input = { relative = "editor" },
-      select = {
-        backend = { "telescope", "fzf", "builtin" },
-      },
-    },
+    branch = "chad",
+    build = "python3 -mhadtree deps",
   },
-
-  -- A fancy, configurable, notification manager for NeoVim
-  {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    opts = {
-      background_colour = "#000000",
-      -- background_colour = "#A3CCBE",
-      timeout = 3000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-    },
-    config = function(_, opts)
-      require("notify").setup(opts)
-      vim.notify = require("notify")
-    end,
-  },
-
-  -- Plugin that lets you highlight, navigate, and operate on sets of matching text.
-  -- It extends vim's % key to language-specific words instead of just single characters.
-  {
-    "andymass/vim-matchup",
-    event = { "BufReadPost" },
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
-  },
-
-  -- Is all about "surroundings": parentheses, brackets, quotes, XML tags, and more.
-  { "tpope/vim-surround", event = "BufReadPre", enabled = false },
 
   -- Surround selections, stylishly 😎
   {
@@ -169,49 +31,61 @@ return {
     end,
   },
 
-  -- Is a simple lua plugin for automated session management.
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
-    -- stylua: ignore
-    keys = {
-      { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
-      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-      { "<leader>qd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
-    },
-  },
-
-  -- Better-escape.vim is created to help Vim/Nvim users escape insert mode quickly using
-  -- their customized key combinations, without experiencing the lag.
-  {
-    "max397574/better-escape.nvim",
-    enabled = true,
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup({
-        mapping = { "jk" },
-      })
-    end,
-  },
-
-  -- Escape insert mode, terminal mode, the "hit-enter-prompt" and more with a simple two character mapping
-  {
-    "TheBlob42/houdini.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    opts = {
-      escape_sequences = {
-        ["t"] = "<ESC>",
-        ["c"] = "<ESC>",
-      },
-    },
-  },
-
   -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
   {
     "moll/vim-bbye",
     event = "VeryLazy",
     enabled = true,
   },
+
+  -- Blazing fast indentation style detection for Neovim written in Lua.
+  {
+    "nmac427/guess-indent.nvim",
+    enabled = false,
+    event = { "BufReadPre" },
+    opts = {},
+  },
+
+  -- {
+  --   "ThePrimeagen/refactoring.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   opts = {},
+  --   config = function(_, opts)
+  --     require("refactoring").setup(opts)
+  --     require("telescope").load_extension("refactoring")
+  --   end,
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "<leader>rs", function() require("telescope").extensions.refactoring.refactors() end, mode = { "v" }, desc = "Refactor", },
+  --     { "<leader>ri", function() require("refactoring").refactor("Inline Variable") end, mode = {"n","v"}, desc =  "Inline Variable" },
+  --     { "<leader>rb", function() require('refactoring').refactor('Exract Block') end, mode = {"n"}, desc = "Extract Block" },
+  --     { "<leader>rf", function() require('refactoring').refactor('Exract Block To File') end, mode = {"n"}, desc = "Extract Block to File" },
+  --     { "<leader>rP", function() require('refactoring').debug.printf({below = false}) end,  mode = {"n"}, desc = "Debug Print" },
+  --     { "<leader>rp", function() require('refactoring').debug.print_var({normal = true}) end, mode = {"n"}, desc = "Debug Print Variable" },
+  --     { "<leader>rc", function() require('refactoring').debug.cleanup({}) end, mode = {"n"}, desc = "Debug Cleanup" },
+  --     { "<leader>rf", function() require('refactoring').refactor('Extract Function') end,  mode = {"v"}, desc = "Extract Function" },
+  --     { "<leader>rF", function() require('refactoring').refactor('Extract Function to File') end, mode = {"v"}, desc =  "Extract Function to File" },
+  --     { "<leader>rx", function() require('refactoring').refactor('Extract Variable') end, mode = {"v"}, desc = "Extract Variable" },
+  --     { "<leader>rp", function() require('refactoring').debug.print_var({}) end, mode = {"v"}, desc =  "Debug Print Variable" },
+  --   },
+  -- },
+
+  -- Finder system
+  {
+    "camspiers/snap",
+    event = "VeryLazy",
+    config = function ()
+      -- Basic example config
+      local snap = require"snap"
+      snap.maps {
+        {"<Leader><Leader>", snap.config.file {producer = "ripgrep.file"}},
+        {"<Leader>fb", snap.config.file {producer = "vim.buffer"}},
+        {"<Leader>fo", snap.config.file {producer = "vim.oldfile"}},
+        {"<Leader>ff", snap.config.vimgrep {}},
+      }
+    end
+  }
 }

@@ -1,86 +1,65 @@
 return {
-  {
-    "folke/styler.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("styler").setup({
-        themes = {
-          markdown = { colorscheme = vim.g.custom_settings_colorscheme },
-          help = { colorscheme = vim.g.custom_settings_colorscheme },
-        },
-      })
-    end,
-  },
-  {
-    'projekt0n/github-nvim-theme',
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-  },
+  -- Gruvbox
   -- {
-  --   "folke/tokyonight.nvim",
+  --   "ellisonleao/gruvbox.nvim",
   --   lazy = false,
   --   priority = 1000,
   --   config = function()
-  --     local tokyonight = require("tokyonight")
-  --     tokyonight.setup({ style = "storm" })
-  --     tokyonight.load()
+  --     require("gruvbox").setup()
+  --     vim.cmd([[colorscheme gruvbox]])
   --   end,
   -- },
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("gruvbox").setup()
-    end,
-  },
-  {
-    "Mofiqul/dracula.nvim",
-    lazy = false,
-    config = function()
-      require("dracula").setup()
-    end,
-  },
+
+  -- Dracula
+  -- {
+  --   "Mofiqul/dracula.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("dracula").setup()
+  --     vim.cmd([[colorscheme dracula]])
+  --   end,
+  -- },
+  
+  -- Catppuccin
   {
     "catppuccin/nvim",
     lazy = false,
+    priority = 1000,
     name = "catppuccin",
+    config = function()
+      vim.cmd([[colorscheme catppuccin]])
+    end,
     opts = {
       integrations = {
-        alpha = true,
-        cmp = true,
-        flash = true,
-        gitsigns = true,
-        illuminate = true,
-        indent_blankline = { enabled = true },
-        lsp_trouble = true,
-        mason = true,
-        mini = true,
-        native_lsp = {
-          enabled = true,
-          underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
-          },
-        },
-        navic = { enabled = true, custom_bg = "lualine" },
-        neotest = true,
-        noice = true,
-        notify = true,
-        neotree = true,
-        semantic_tokens = true,
-        telescope = true,
-        treesitter = true,
-        which_key = true,
+        -- alpha = true,
+        -- cmp = true,
+        -- flash = true,
+        -- gitsigns = true,
+        -- illuminate = true,
+        -- indent_blankline = { enabled = true },
+        -- lsp_trouble = true,
+        -- mason = true,
+        -- mini = true,
+        -- native_lsp = {
+        --   enabled = true,
+        --   underlines = {
+        --     errors = { "undercurl" },
+        --     hints = { "undercurl" },
+        --     warnings = { "undercurl" },
+        --     information = { "undercurl" },
+        --   },
+        -- },
+        -- navic = { enabled = true, custom_bg = "lualine" },
+        -- neotest = true,
+        -- noice = true,
+        -- notify = true,
+        -- neotree = true,
+        -- semantic_tokens = true,
+        -- telescope = true,
+        -- treesitter = true,
+        -- which_key = true,
       },
     },
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = vim.g.custom_settings_colorscheme,
-    },
-  },
+  }
 }
