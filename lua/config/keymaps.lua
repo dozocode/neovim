@@ -33,3 +33,13 @@ map("n", "<Leader>q", ":Bdelete<CR>")
 -- keep cursor in the middle when ctrl + d
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
+
+-- lsp
+map("n", "<leader>gd", ":lua vim.lsp.buf.definition()<CR>")
+map("n", "<leader>vd", ":lua vim.diagnostic.open_float()<CR>")
+map("n", "<leader>vr", ":lua vim.lsp.buf.references()<CR>")
+map("n", "<leader>va", ":lua vim.lsp.buf.code_action()<CR>")
+map("n", "<leader>vh", ":lua vim.lsp.buf.hover()<CR>")
+
+-- upload file to remote server
+map("n", "<leader>up", ":w <BAR> :RsyncUpFile<CR>")

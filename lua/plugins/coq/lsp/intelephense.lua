@@ -1,6 +1,13 @@
 local lsp = require "lspconfig"
 local coq = require "coq"
 
-lsp.intelephense.setup{}
-lsp.intelephense.setup(coq.lsp_ensure_capabilities{})
+local config = {
+  filetypes = { 
+    "php",
+    "phtml"
+  }
+}
+
+lsp.intelephense.setup(config)
+lsp.intelephense.setup(coq.lsp_ensure_capabilities(config))
 vim.cmd('COQnow -s')
