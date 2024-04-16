@@ -249,19 +249,53 @@ return {
 
   -- Finder system
   {
-    "camspiers/snap",
+    "nvim-telescope/telescope.nvim", 
     event = "VeryLazy",
-    config = function ()
-      local snap = require"snap"
+    tag = "0.1.6",
+    dependencies = { 
+      "nvim-lua/plenary.nvim",
+    },
+    -- opts = {
+    --   pickers = {
+    --     buffers = {
+    --       previewer = false,
+    --     },
+    --   },
+    -- },
+    config = function()
+      local builtin = require('telescope.builtin')
 
-      snap.maps {
-        {"<Leader><Leader>", snap.config.file {producer = "ripgrep.file"}},
-        {"<Leader>fb", snap.config.file {producer = "vim.buffer"}},
-        {"<Leader>fo", snap.config.file {producer = "vim.oldfile"}},
-        {"<Leader>ff", snap.config.vimgrep {}},
+      require('telescope').setup{
+        defaults = {
+          -- Default configuration for all pickers
+        },
+        pickers = {
+          buffers = {
+            previewer = false,
+          },
+        },
       }
+
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     end
   },
+  -- {
+  --   "camspiers/snap",
+  --   event = "VeryLazy",
+  --   config = function ()
+  --     local snap = require"snap"
+
+  --     snap.maps {
+  --       {"<Leader><Leader>", snap.config.file {producer = "ripgrep.file"}},
+  --       {"<Leader>fb", snap.config.file {producer = "vim.buffer"}},
+  --       {"<Leader>fo", snap.config.file {producer = "vim.oldfile"}},
+  --       {"<Leader>ff", snap.config.vimgrep {}},
+  --     }
+  --   end
+  -- },
 
   -- -- Remote
   -- {
