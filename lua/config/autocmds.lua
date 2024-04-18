@@ -11,3 +11,19 @@ local function toggle_hlsearch(char)
   end
 end
 vim.on_key(toggle_hlsearch, ns)
+
+-- indentation by file type
+local function indentationByFile(fileType, indentationWidth)
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = fileType,
+    callback = function()
+      vim.opt_local.shiftwidth = indentationWidth
+      vim.opt_local.tabstop = indentationWidth
+    end,
+  })
+end
+
+indentationByFile("php", 4)
+indentationByFile("phtml", 4)
+indentationByFile("xml", 4)
+

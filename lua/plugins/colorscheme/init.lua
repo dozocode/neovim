@@ -1,14 +1,14 @@
 return {
   -- Kanagawa
-  {
-    "rebelot/kanagawa.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("kanagawa").setup()
-      vim.cmd([[colorscheme kanagawa]])
-    end,
-  },
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("kanagawa").setup()
+  --     vim.cmd([[colorscheme kanagawa]])
+  --   end,
+  -- },
 
   -- Gruvbox
   -- {
@@ -33,13 +33,13 @@ return {
   -- },
   
   -- Catppuccin
-  -- {
-  --   "catppuccin/nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   name = "catppuccin",
-  --   config = function()
-  --     vim.cmd([[colorscheme catppuccin]])
-  --   end,
-  -- }
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    priority = 1000,
+    name = "catppuccin",
+    config = function()
+      vim.cmd([[colorscheme catppuccin-mocha]])
+    end,
+  }
 }

@@ -38,9 +38,10 @@ return {
         "typescript",
         "css",
         "php",
+        "xml",
       },
       highlight = { 
-        enable = true
+        enable = true,
       },
       indent = { 
         enable = true 
@@ -240,13 +241,6 @@ return {
     enabled = true,
   },
 
-  -- -- Blazing fast indentation style detection for Neovim written in Lua.
-  -- {
-  --   "nmac427/guess-indent.nvim",
-  --   event = { "BufReadPre" },
-  --   opts = {},
-  -- },
-
   -- Finder system
   {
     "nvim-telescope/telescope.nvim", 
@@ -263,49 +257,70 @@ return {
     --   },
     -- },
     config = function()
-      local builtin = require('telescope.builtin')
+      local telescope = require "telescope"
+      local actions = require "telescope.actions"
+      local builtin = require "telescope.builtin"
 
-      require('telescope').setup{
-        defaults = {
-          -- Default configuration for all pickers
-        },
-        pickers = {
-          buffers = {
-            previewer = false,
-          },
-        },
-      }
+      -- require('telescope').setup{
+      -- }
 
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
       vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+      local mappings = {
+        i = {
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          -- ["<C-n>"] = actions.cycle_history_next,
+          -- ["<C-p>"] = actions.cycle_history_prev,
+          -- ["?"] = actions_layout.toggle_preview,
+          -- ["<C-s>"] = custom_actions.visidata,
+          -- ["<A-f>"] = custom_actions.file_browser,
+          -- ["<C-z>"] = custom_actions.toggle_term,
+          ['<C-d>'] = actions.delete_buffer,
+        },
+        n = {
+          -- ["s"] = custom_actions.visidata,
+          -- ["z"] = custom_actions.toggle_term,
+          -- ["<A-f>"] = custom_actions.file_browser,
+          -- ["q"] = require("telescope.actions").close,
+          -- ["cd"] = custom_actions.cwd,
+          -- ['<C-d>'] = actions.delete_buffer
+        },
+      }
+
+      local opts = {
+        defaults = {
+          -- Default configuration for all pickers
+          mappings = mappings,
+        },
+        pickers = {
+          -- find_files = {
+          --   theme = "dropdown",
+          --   previewer = false,
+          --   hidden = true,
+          --   find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+          -- },
+          buffers = {
+            -- theme = "dropdown",
+            previewer = false,
+          },
+          -- live_grep = {
+          --   mappings = {
+          --     i = {
+          --       ["<c-f>"] = custom_pickers.actions.set_extension,
+          --       ["<c-l>"] = custom_pickers.actions.set_folders,
+          --     },
+          --   },
+          -- },
+        },
+      }
+
+      telescope.setup(opts)
     end
   },
-  -- {
-  --   "camspiers/snap",
-  --   event = "VeryLazy",
-  --   config = function ()
-  --     local snap = require"snap"
-
-  --     snap.maps {
-  --       {"<Leader><Leader>", snap.config.file {producer = "ripgrep.file"}},
-  --       {"<Leader>fb", snap.config.file {producer = "vim.buffer"}},
-  --       {"<Leader>fo", snap.config.file {producer = "vim.oldfile"}},
-  --       {"<Leader>ff", snap.config.vimgrep {}},
-  --     }
-  --   end
-  -- },
-
-  -- -- Remote
-  -- {
-  --   "yuseku/rsync.nvim", 
-  --   event = "VeryLazy",
-  --   build = "make",
-  --   dependencies = {
-  --     { "nvim-lua/plenary.nvim" }
-  --   }
-  -- },
 
   {
     "ThePrimeagen/harpoon",
@@ -356,6 +371,7 @@ return {
       'glimmer', 
       'handlebars', 
       'hbs',
+      'css',
     },
     config = function()
       require("nvim-ts-autotag").setup()

@@ -56,20 +56,32 @@ return {
         { "neovim/nvim-lspconfig" },
     },
     config = function(plugin, opts)
+      -- vim.g.coq_settings = { 
+      --   ["keymap.recommended"] = false,
+      -- }
+
+      -- _G.pumvisible = function()
+      --   return vim.fn.pumvisible() == 1
+      -- end
+
+      -- _G.check_complete = function()
+      --   local info = vim.fn.complete_info()
+      --   return info.selected == -1 and "<C-e><CR>" or "<C-y>"
+      -- end
+
+      -- vim.api.nvim_set_keymap('i', '<Esc>',   'v:lua.pumvisible() ? "<C-e><Esc>" : "<Esc>"', {expr = true, noremap = true, silent = true})
+      -- vim.api.nvim_set_keymap('i', '<C-c>',   'v:lua.pumvisible() ? "<C-e><C-c>" : "<C-c>"', {expr = true, noremap = true, silent = true})
+      -- vim.api.nvim_set_keymap('i', '<BS>',    'v:lua.pumvisible() ? "<C-e><BS>" : "<BS>"', {expr = true, noremap = true, silent = true})
+      -- vim.api.nvim_set_keymap('i', '<CR>',    'v:lua.pumvisible() ? v:lua.check_complete() : "<CR>"', {expr = true, noremap = true, silent = true})
+      -- vim.api.nvim_set_keymap('i', '<Tab>',   'v:lua.pumvisible() ? "<C-n>" : "<Tab>"', {expr = true, noremap = true, silent = true})
+      -- vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.pumvisible() ? "<C-p>" : "<BS>"', {expr = true, noremap = true, silent = true})
+      -- vim.api.nvim_set_keymap('i', '<C-j>',   'v:lua.pumvisible() ? "<C-n>" : "<Tab>"', {expr = true, noremap = true, silent = true})
+      -- vim.api.nvim_set_keymap('i', '<C-k>', 'v:lua.pumvisible() ? "<C-p>" : "<BS>"', {expr = true, noremap = true, silent = true})
+
       -- require("plugins.coq.lsp.intelephense")
       require("plugins.coq.lsp.typescript")
       require("plugins.coq.lsp.css")
       require("plugins.coq.lsp.eslint")
     end
   },
-
-  -- -- LSP support for magento 2
-  -- {
-  --   "pbogut/magento2-ls",
-  --   event = { "BufReadPre", "BufNewFile" },
-  --   build = "cargo build --release",
-  --   config = function()
-  --     require("magento2_ls").setup()
-  --   end,
-  -- },
 }
