@@ -7,7 +7,6 @@
   "coq_nvim": { "branch": "coq", "commit": "aeb350d31c8c1d93fc94cc753b416ea0b65dc6c0" },
   "fidget.nvim": { "branch": "main", "commit": "1ba38e4cbb24683973e00c2e36f53ae64da38ef5" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
-  "indent-o-matic": { "branch": "master", "commit": "4d11e98f523d3c4500b1dc33f0d1a248a4f69719" },
   "lazy.nvim": { "branch": "main", "commit": "bef521ac89c8d423f9d092e37b58e8af0c099309" },
   "magento2-ls": { "branch": "master", "commit": "7d5c7697fd029331254b528f48c82a296ea685b0" },
   "none-ls.nvim": { "branch": "main", "commit": "09a7c58e9283dda582d9805f6b182b5b9f137ec7" },
