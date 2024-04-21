@@ -82,6 +82,7 @@ return {
       require("plugins.coq.lsp.typescript")
       require("plugins.coq.lsp.css")
       require("plugins.coq.lsp.eslint")
+      require("plugins.coq.lsp.csharp")
     end
   },
 }

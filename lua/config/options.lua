@@ -57,4 +57,8 @@ opt.foldlevelstart = 99
 opt.signcolumn = "yes"
 opt.colorcolumn = "120"
 
+vim.o.termguicolors = true
+-- opt.termguicolors = true
+-- g.dracula_colorterm = 0
+-- g.dracula_italic = 0
 
