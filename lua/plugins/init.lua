@@ -14,92 +14,92 @@ return {
     },
     event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
-    opts = {
-      -- sync_install = true,
-      ensure_installed = {
-        "bash",
-        "dockerfile",
-        "html",
-        "markdown",
-        "markdown_inline",
-        "org",
-        "query",
-        "regex",
-        "latex",
-        "vim",
-        "vimdoc",
-        "yaml",
-        "javascript",
-        "json",
-        "json5",
-        "jsonc",
-        "lua",
-        "tsx",
-        "typescript",
-        "css",
-        "php",
-        "xml",
-      },
-      highlight = { 
-        enable = true,
-      },
-      indent = { 
-        enable = true 
-      },
-      matchup = {
-        enable = true,
-      },
-      endwise = {
-        enable = true,
-      },
-      autotag = {
-        enable = true,
-      },
-      context_commentstring = { 
-        enable = true, 
-        enable_autocmd = false 
-      },
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-          keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            ["aa"] = "@parameter.outer",
-            ["ia"] = "@parameter.inner",
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-          },
-        },
-        move = {
-          enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
-          goto_next_start = {
-            ["]m"] = "@function.outer",
-            ["]]"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["]M"] = "@function.outer",
-            ["]["] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[m"] = "@function.outer",
-            ["[["] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["[M"] = "@function.outer",
-            ["[]"] = "@class.outer",
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = swap_next,
-          swap_previous = swap_prev,
-        },
-      },
-    }
+    -- opts = {
+    --   -- sync_install = true,
+    --   ensure_installed = {
+    --     "bash",
+    --     "dockerfile",
+    --     "html",
+    --     "markdown",
+    --     "markdown_inline",
+    --     "org",
+    --     "query",
+    --     "regex",
+    --     "latex",
+    --     "vim",
+    --     "vimdoc",
+    --     "yaml",
+    --     "javascript",
+    --     "json",
+    --     "json5",
+    --     "jsonc",
+    --     "lua",
+    --     "tsx",
+    --     "typescript",
+    --     "css",
+    --     "php",
+    --     "xml",
+    --   },
+    --   highlight = { 
+    --     enable = true,
+    --   },
+    --   indent = { 
+    --     enable = true 
+    --   },
+    --   matchup = {
+    --     enable = true,
+    --   },
+    --   endwise = {
+    --     enable = true,
+    --   },
+    --   autotag = {
+    --     enable = true,
+    --   },
+    --   context_commentstring = { 
+    --     enable = true, 
+    --     enable_autocmd = false 
+    --   },
+    --   textobjects = {
+    --     select = {
+    --       enable = true,
+    --       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+    --       keymaps = {
+    --         -- You can use the capture groups defined in textobjects.scm
+    --         ["aa"] = "@parameter.outer",
+    --         ["ia"] = "@parameter.inner",
+    --         ["af"] = "@function.outer",
+    --         ["if"] = "@function.inner",
+    --         ["ac"] = "@class.outer",
+    --         ["ic"] = "@class.inner",
+    --       },
+    --     },
+    --     move = {
+    --       enable = true,
+    --       set_jumps = true, -- whether to set jumps in the jumplist
+    --       goto_next_start = {
+    --         ["]m"] = "@function.outer",
+    --         ["]]"] = "@class.outer",
+    --       },
+    --       goto_next_end = {
+    --         ["]M"] = "@function.outer",
+    --         ["]["] = "@class.outer",
+    --       },
+    --       goto_previous_start = {
+    --         ["[m"] = "@function.outer",
+    --         ["[["] = "@class.outer",
+    --       },
+    --       goto_previous_end = {
+    --         ["[M"] = "@function.outer",
+    --         ["[]"] = "@class.outer",
+    --       },
+    --     },
+    --     swap = {
+    --       enable = true,
+    --       swap_next = swap_next,
+    --       swap_previous = swap_prev,
+    --     },
+    --   },
+    -- }
     -- opts = function()
     --   return {
     --     ensure_installed = { 
@@ -187,22 +187,42 @@ return {
     --     -- },
     --   }
     -- end,
-    -- config = function () 
-    --   -- local configs = require("nvim-treesitter.configs")
+    config = function () 
+      -- lvim.builtin.treesitter.autotag.enable = true 
 
-    --   -- configs.setup({
-    --   --     ensure_installed = { "lua", "vim", "vimdoc", "query", "php", "javascript", "html" },
-    --   --     sync_install = false,
-    --   --     highlight = { enable = true },
-    --   --     indent = { enable = true },  
-    --   --   })
+      -- local configs = require("nvim-treesitter.configs")
 
-    --   require'nvim-treesitter.configs'.setup {
-    --     autotag = {
-    --       enable = true,
-    --     }
-    --   }
-    -- end
+      -- configs.setup({
+      --     ensure_installed = { "lua", "vim", "vimdoc", "query", "php", "javascript", "html" },
+      --     sync_install = false,
+      --     highlight = { enable = true },
+      --     indent = { enable = true },  
+      --   })
+
+      -- require'nvim-treesitter.configs'.setup {
+      --   autotag = {
+      --     enable = true,
+      --   }
+      -- }
+      
+       require 'nvim-ts-autotag'.setup()
+       require("nvim-treesitter.configs").setup({ 
+           sync_install = true, 
+           ensure_installed = { 
+               "html", 
+               "javascript", 
+               "typescript", 
+               "tsx", 
+               -- "svelte", 
+               -- "vue", 
+               -- "php", 
+               -- "glimmer", 
+               -- "rescript", 
+               -- "embedded_template",
+               -- "tsx"
+           }, 
+       }) 
+    end
   },
 
   -- requires python3-venv then :CHADdeps
@@ -350,44 +370,44 @@ return {
   },
 
   -- typescript autotag
-  {
-    "windwp/nvim-ts-autotag",
-    event = "VeryLazy",
-    filetypes = {
-      'html', 
-      'javascript', 
-      'typescript', 
-      'javascriptreact', 
-      'typescriptreact', 
-      'svelte', 
-      'vue', 
-      'tsx', 
-      'jsx', 
-      'rescript',
-      'xml',
-      'php',
-      'markdown',
-      'astro', 
-      'glimmer', 
-      'handlebars', 
-      'hbs',
-      'css',
-    },
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end
-  },
+  -- {
+  --   "windwp/nvim-ts-autotag",
+  --   event = "VeryLazy",
+  --   filetypes = {
+  --     'html', 
+  --     'javascript', 
+  --     'typescript', 
+  --     'javascriptreact', 
+  --     'typescriptreact', 
+  --     'svelte', 
+  --     'vue', 
+  --     'tsx', 
+  --     'jsx', 
+  --     'rescript',
+  --     'xml',
+  --     'php',
+  --     'markdown',
+  --     'astro', 
+  --     'glimmer', 
+  --     'handlebars', 
+  --     'hbs',
+  --     'css',
+  --   },
+  --   config = function()
+  --     require("nvim-ts-autotag").setup()
+  --   end
+  -- },
 
   -- auto closing
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    enabled = false,
-    config = function()
-      local npairs = require("nvim-autopairs")
-      npairs.setup({
-        check_ts = true,
-      })
-    end,
-  },
+  -- {
+  --   "windwp/nvim-autopairs",
+  --   event = "InsertEnter",
+  --   enabled = false,
+  --   config = function()
+  --     local npairs = require("nvim-autopairs")
+  --     npairs.setup({
+  --       check_ts = true,
+  --     })
+  --   end,
+  -- },
 }
