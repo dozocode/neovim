@@ -92,6 +92,7 @@ return {
           buffers = {
             previewer = false,
           },
+  	}
       }
 
       telescope.setup(opts)
