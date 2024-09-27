@@ -80,11 +80,28 @@ return {
 
       -- require("plugins.coq.lsp.intelephense")
       -- require("plugins.coq.lsp.csharp")
-      require("plugins.coq.lsp.typescript")
+      -- require("plugins.coq.lsp.typescript")
       require("plugins.coq.lsp.css")
       require("plugins.coq.lsp.eslint")
       require("plugins.coq.lsp.tailwind")
       require("plugins.coq.lsp.emmet")
+    end
+  },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+    config = function ()
+      require("typescript-tools").setup({
+        settings = {
+          jsx_close_tag = {
+              enable = true,
+              filetypes = { "javascriptreact", "typescriptreact" },
+          }
+        },
+      })
     end
   },
 }
