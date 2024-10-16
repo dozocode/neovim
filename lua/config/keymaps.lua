@@ -43,3 +43,7 @@ map("n", "<leader>vh", ":lua vim.lsp.buf.hover()<CR>")
 
 -- upload file to remote server
 map("n", "<leader>up", ":w <BAR> :RsyncUpFile<CR>")
+
+-- Eslint formatting
+map("n", "<leader>fr", ":EslintFixAll<CR>")
+
