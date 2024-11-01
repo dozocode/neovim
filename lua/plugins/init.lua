@@ -5,8 +5,229 @@ return {
   -- Neovim Treesitter configurations and abstraction layer
   {
     "nvim-treesitter/nvim-treesitter", 
-    build = ":TSUpdate"
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      "RRethy/nvim-treesitter-endwise",
+      "windwp/nvim-ts-autotag",
+      "nvim-treesitter/playground",
+    },
+    event = { "BufReadPost", "BufNewFile" },
+    build = ":TSUpdate",
+    -- opts = {
+    --   -- sync_install = true,
+    --   ensure_installed = {
+    --     "bash",
+    --     "dockerfile",
+    --     "html",
+    --     "markdown",
+    --     "markdown_inline",
+    --     "org",
+    --     "query",
+    --     "regex",
+    --     "latex",
+    --     "vim",
+    --     "vimdoc",
+    --     "yaml",
+    --     "javascript",
+    --     "json",
+    --     "json5",
+    --     "jsonc",
+    --     "lua",
+    --     "tsx",
+    --     "typescript",
+    --     "css",
+    --     "php",
+    --     "xml",
+    --   },
+    --   highlight = { 
+    --     enable = true,
+    --   },
+    --   indent = { 
+    --     enable = true 
+    --   },
+    --   matchup = {
+    --     enable = true,
+    --   },
+    --   endwise = {
+    --     enable = true,
+    --   },
+    --   autotag = {
+    --     enable = true,
+    --   },
+    --   context_commentstring = { 
+    --     enable = true, 
+    --     enable_autocmd = false 
+    --   },
+    --   textobjects = {
+    --     select = {
+    --       enable = true,
+    --       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+    --       keymaps = {
+    --         -- You can use the capture groups defined in textobjects.scm
+    --         ["aa"] = "@parameter.outer",
+    --         ["ia"] = "@parameter.inner",
+    --         ["af"] = "@function.outer",
+    --         ["if"] = "@function.inner",
+    --         ["ac"] = "@class.outer",
+    --         ["ic"] = "@class.inner",
+    --       },
+    --     },
+    --     move = {
+    --       enable = true,
+    --       set_jumps = true, -- whether to set jumps in the jumplist
+    --       goto_next_start = {
+    --         ["]m"] = "@function.outer",
+    --         ["]]"] = "@class.outer",
+    --       },
+    --       goto_next_end = {
+    --         ["]M"] = "@function.outer",
+    --         ["]["] = "@class.outer",
+    --       },
+    --       goto_previous_start = {
+    --         ["[m"] = "@function.outer",
+    --         ["[["] = "@class.outer",
+    --       },
+    --       goto_previous_end = {
+    --         ["[M"] = "@function.outer",
+    --         ["[]"] = "@class.outer",
+    --       },
+    --     },
+    --     swap = {
+    --       enable = true,
+    --       swap_next = swap_next,
+    --       swap_previous = swap_prev,
+    --     },
+    --   },
+    -- }
+    -- opts = function()
+    --   return {
+    --     ensure_installed = { 
+    --       "lua",
+    --       "javascript",
+    --       "typescript",
+    --       "tsx",
+    --       "vim", 
+    --       "vimdoc", 
+    --       "query", 
+    --       "php", 
+    --       "html" 
+    --     },
+    --     -- filters = {
+    --     --   dotfiles = false,
+    --     -- },
+    --     -- disable_netrw = true,
+    --     -- hijack_netrw = true,
+    --     -- hijack_cursor = true,
+    --     -- hijack_unnamed_buffer_when_opening = false,
+    --     -- sync_root_with_cwd = true,
+    --     -- update_focused_file = {
+    --     --   enable = true,
+    --     --   update_root = false,
+    --     -- },
+    --     -- view = {
+    --     --   adaptive_size = false,
+    --     --   side = "left",
+    --     --   width = 30,
+    --     --   preserve_window_proportions = true,
+    --     -- },
+    --     -- git = {
+    --     --   enable = true,
+    --     --   ignore = true,
+    --     -- },
+    --     -- filesystem_watchers = {
+    --     --   enable = true,
+    --     -- },
+    --     -- actions = {
+    --     --   open_file = {
+    --     --     resize_window = true,
+    --     --   },
+    --     -- },
+    --     -- renderer = {
+    --     --   root_folder_label = false,
+    --     --   highlight_git = true,
+    --     --   highlight_opened_files = "none",
+
+    --     --   indent_markers = {
+    --     --     enable = true,
+    --     --   },
+
+    --     --   icons = {
+    --     --     show = {
+    --     --       file = true,
+    --     --       folder = true,
+    --     --       folder_arrow = true,
+    --     --       git = true,
+    --     --     },
+
+    --     --     glyphs = {
+    --     --       default = "󰈚",
+    --     --       symlink = "",
+    --     --       folder = {
+    --     --         default = "",
+    --     --         empty = "",
+    --     --         empty_open = "",
+    --     --         open = "",
+    --     --         symlink = "",
+    --     --         symlink_open = "",
+    --     --         arrow_open = "",
+    --     --         arrow_closed = "",
+    --     --       },
+    --     --       git = {
+    --     --         unstaged = "✗",
+    --     --         staged = "✓",
+    --     --         unmerged = "",
+    --     --         renamed = "➜",
+    --     --         untracked = "★",
+    --     --         deleted = "",
+    --     --         ignored = "◌",
+    --     --       },
+    --     --     },
+    --     --   },
+    --     -- },
+    --   }
+    -- end,
+    config = function () 
+      -- lvim.builtin.treesitter.autotag.enable = true 
+
+      -- local configs = require("nvim-treesitter.configs")
+
+      -- configs.setup({
+      --     ensure_installed = { "lua", "vim", "vimdoc", "query", "php", "javascript", "html" },
+      --     sync_install = false,
+      --     highlight = { enable = true },
+      --     indent = { enable = true },  
+      --   })
+
+      -- require'nvim-treesitter.configs'.setup {
+      --   autotag = {
+      --     enable = true,
+      --   }
+      -- }
+      
+       require 'nvim-ts-autotag'.setup()
+       require("nvim-treesitter.configs").setup({ 
+           sync_install = true, 
+           ensure_installed = { 
+               "html", 
+               "javascript", 
+               "typescript", 
+               "tsx", 
+               -- "svelte", 
+               -- "vue", 
+               -- "php", 
+               -- "glimmer", 
+               -- "rescript", 
+               -- "embedded_template",
+               -- "tsx"
+           }, 
+       }) 
+    end
   },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter", 
+  --   build = ":TSUpdate"
+  -- },
 
   -- requires python3-venv then :CHADdeps
   {

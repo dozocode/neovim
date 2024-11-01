@@ -79,7 +79,7 @@ return {
       -- vim.api.nvim_set_keymap('i', '<C-k>', 'v:lua.pumvisible() ? "<C-p>" : "<BS>"', {expr = true, noremap = true, silent = true})
 
       -- require("plugins.coq.lsp.intelephense")
-      -- require("plugins.coq.lsp.csharp")
+      require("plugins.coq.lsp.csharp")
       -- require("plugins.coq.lsp.typescript")
       require("plugins.coq.lsp.css")
       require("plugins.coq.lsp.eslint")
